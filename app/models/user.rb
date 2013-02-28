@@ -6,12 +6,17 @@ class User
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
 
+  field :username, :type => String
+  index({ username: 1 }, {unique: true})
+
+  validates_presence_of :username
+  validates_uniqueness_of :username
   validates_presence_of :email
   validates_presence_of :encrypted_password
   
@@ -44,7 +49,22 @@ class User
   # field :authentication_token, :type => String
   # run 'rake db:mongoid:create_indexes' to create indexes
   index({ email: 1 }, { unique: true, background: true })
-  field :name, :type => String
-  validates_presence_of :name
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
+
+  field :first_name, :type => String
+  field :is_admin, :type => Boolean, :default => false
+  field :last_name, :type => String
+  field :title, :type => String
+  validates_presence_of :title, :first_name, :last_name
+  attr_accessor :login
+  attr_accessible :login, :title, :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :is_admin
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      self.any_of({ :username =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
+    else
+      super
+    end
+  end
+
 end

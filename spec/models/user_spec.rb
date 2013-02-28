@@ -4,7 +4,9 @@ describe User do
 
   before(:each) do
     @attr = {
-      :name => "Example User",
+      :first_name => "Example",
+      :last_name => "User",
+      :username => "username",
       :email => "user@example.com",
       :password => "changeme",
       :password_confirmation => "changeme"
@@ -13,6 +15,17 @@ describe User do
 
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
+  end
+
+  it "should require a username" do
+    no_username_user = User.new(@attr.merge(:username => ""))
+    no_username_user.should_not be_valid
+  end
+
+  it "should reject duplicate username" do
+    User.create!(@attr)
+    user_with_duplicate_username = User.new(@attr)
+    user_with_duplicate_username.should_not be_valid
   end
 
   it "should require an email address" do
