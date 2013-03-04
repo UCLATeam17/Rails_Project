@@ -12,14 +12,21 @@
   <% end %>
 
   <div><%= f.label :name %><br />
-    <%= f.text_field :name %> </div>
+  <%= f.text_field :name %> </div>
 
-    <div><%= f.label :description %><br />
-    <%= f.text_field :description %> </div>
+  <div><%= f.label :description %><br />
+  <%= f.text_area :description, :size => "30x15" %> </div>
+  
+  <div><%= f.label :category_id %><br />
+  <%= f.collection_select(:category_id, Category.all, :_id, :name, :prompt=>"category")%><%= link_to 'New Category', new_category_path%> </div>
+  
+  <div><%=f.label :start_date %><br/>
+  <%= f.date_select :start_date, :order => [:day, :month, :year] %></div>
 
-    <div><%= f.label :category %><br />
-    <%= f.select :category [Category.only(:name).all] %> </div>
+  <div><%=f.label :end_date %><br/>
+  <%= f.date_select :end_date, :order => [:day, :month, :year] %></div>
 
+  <br />
 
   <div class="actions">
     <%= f.submit %>
