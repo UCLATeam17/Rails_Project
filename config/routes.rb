@@ -11,7 +11,4 @@ Rails3MongoidDevise::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
-  match '/categories/new', :to => 'categories#new'
-  match '/categories/',     :to => 'categories#index'
-  match '/categories/:name', :to => 'categories#show'
 end

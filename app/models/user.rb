@@ -49,11 +49,13 @@ class User
   # field :authentication_token, :type => String
   # run 'rake db:mongoid:create_indexes' to create indexes
   index({ email: 1 }, { unique: true, background: true })
-
-  field :first_name, :type => String
-  field :is_admin, :type => Boolean, :default => false
-  field :last_name, :type => String
+  field :name, :type => Hash
+  
   field :title, :type => String
+  field :first_name, :type => String
+  field :last_name, :type => String
+  
+  field :is_admin, :type => Boolean, :default => false
   validates_presence_of :title, :first_name, :last_name
   attr_accessor :login
   attr_accessible :login, :title, :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :is_admin

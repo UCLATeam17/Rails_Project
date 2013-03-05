@@ -12,8 +12,11 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   # GET /courses/1.json
+  #increment number of visits to the course page
   def show
     @course = Course.find(params[:id])
+    @course.num_visits += 1
+    @course.save
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,8 +36,11 @@ class CoursesController < ApplicationController
   end
 
   # GET /courses/1/edit
+  # update time date of date_update_at
   def edit
     @course = Course.find(params[:id])
+    @course.date_update_at = Time.now
+    @course.save
   end
 
   # POST /courses
