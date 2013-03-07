@@ -2,7 +2,10 @@ class Course
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
 
-  attr_accessible :name, :description, :category_id, :start_date, :end_date, :tags, :price, :num_places, :num_visits
+  attr_accessible :name, :description, :category_id, :start_date, :end_date, :tags, :price, :num_places, :num_visits, :location
+
+  #search_in :description, :name, :tags
+
   field :name, type: String
   field :description, type: String
   field :price, type: BigDecimal
@@ -14,7 +17,7 @@ class Course
   field :date_created_at, type: Time, default: ->{ Time.now }
   field :date_update_at, type: Time, default: ->{ Time.now }
   #field :instructor, type: String
-  #field :location, type: String
+  field :location, type: String
   field :tags, type: Array
 
   belongs_to :category
@@ -24,6 +27,7 @@ class Course
 
   validate :valid_date_range_required, :start_date_cannot_be_in_the_past
   tags = :tags
+
 
   def valid_date_range_required
     if (:start_date && :end_date) && (:start_date < :end_date)

@@ -2,7 +2,11 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    if params[:search]
+      @courses = Course.full_text_search(params[:search])
+    else
+      @courses = Course.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

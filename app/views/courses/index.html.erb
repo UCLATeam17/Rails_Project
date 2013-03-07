@@ -7,11 +7,20 @@
     <th></th>
   </tr>
 
+<%= form_for courses_path, :method => 'get' do |f| %>
+  <div><%=f.label :search %><br/>
+  <%= f.text_field :search %><br /><br />
+  <div>
+    <%= f.submit "Search", :name => nil%>
+  </div>
+</div>
+
+<%end%>
+
 <% @courses.each do |course| %>
   <tr>
     <td><%= course.name %></td>
     <td><%= link_to 'Show', course %></td>
-    <td><%= link_to 'Edit', edit_course_path(course) %></td>
     <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
