@@ -4,8 +4,6 @@ class Course
 
   attr_accessible :name, :description, :category_id, :start_date, :end_date, :tags, :price, :num_places, :num_visits, :location
 
-  #search_in :description, :name, :tags
-
   field :name, type: String
   field :description, type: String
   field :price, type: BigDecimal

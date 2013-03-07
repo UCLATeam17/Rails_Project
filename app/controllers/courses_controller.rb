@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if params[:search]
-      @courses = Course.full_text_search(params[:search])
     else
       @courses = Course.all
     end
