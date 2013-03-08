@@ -22,4 +22,7 @@
     <%= link_to 'Sign up', new_user_registration_path %>
     </li>
   <% end %>
+  <% if can? :access, :rails_admin %> 
+    <li><%= link_to 'Admin Dashboard', rails_admin_path %></li>
+  <%end%>
 </ul>

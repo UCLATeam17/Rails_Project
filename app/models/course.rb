@@ -2,7 +2,7 @@ class Course
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
 
-  attr_accessible :name, :description, :category_id, :start_date, :end_date, :tags, :price, :num_places, :num_visits, :location
+  attr_accessible :name, :description, :category_id, :start_date, :end_date, :tags, :price, :num_places, :location
 
   field :name, type: String
   field :description, type: String
@@ -20,7 +20,7 @@ class Course
 
   belongs_to :category
   validates_presence_of :category_id, :message => "must be selected"
-  validates_presence_of :name, :description, :price, :num_places
+  validates_presence_of :name, :description, :price, :num_places, :start_date, :end_date, :location, :tags
   validates_uniqueness_of :name
 
   validate :valid_date_range_required, :start_date_cannot_be_in_the_past
