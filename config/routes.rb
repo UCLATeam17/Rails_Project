@@ -2,6 +2,10 @@ Rails3MongoidDevise::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+  end
+
   resources :courses
 
   resources :categories

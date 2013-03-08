@@ -15,9 +15,8 @@ class User
   field :username, :type => String
   index({ username: 1 }, {unique: true})
 
-  validates_presence_of :username
+  validates_presence_of :username, :password_confirmation, :password, :email, :title, :first_name, :last_name
   validates_uniqueness_of :username
-  validates_presence_of :email
   validates_presence_of :encrypted_password
   
   ## Recoverable
@@ -56,7 +55,6 @@ class User
   field :last_name, :type => String
   
   field :is_admin, :type => Boolean, :default => false
-  validates_presence_of :title, :first_name, :last_name
   attr_accessor :login
   attr_accessible :login, :title, :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :is_admin
 
