@@ -149,7 +149,16 @@ RailsAdmin.config do |config|
   ###  User  ###
 
   # config.model 'User' do
-
+  config.model 'User' do
+    edit do
+      configure :password do
+        hide
+      end
+      configure :password_confirmation do
+        hide
+      end
+    end
+  end
   #   # You can copy this to a 'rails_admin do ... end' block inside your user.rb model definition
 
   #   # Found associations:

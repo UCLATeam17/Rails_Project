@@ -48,7 +48,6 @@ class User
   # field :authentication_token, :type => String
   # run 'rake db:mongoid:create_indexes' to create indexes
   index({ email: 1 }, { unique: true, background: true })
-  field :name, :type => Hash
   
   field :title, :type => String
   field :first_name, :type => String
