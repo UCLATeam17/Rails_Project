@@ -1,6 +1,11 @@
-	<%= javascript_include_tag "JamieAppleseed-selectToAutocomplete/jquery.js" %>
-	<%= javascript_include_tag "JamieAppleseed-selectToAutocomplete/jquery-ui-autocomplete.js" %>
-	<%= javascript_include_tag "JamieAppleseed-selectToAutocomplete/jquery.select-to-autocomplete.min.js" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Select to Autocomplete</title>
+	<script src="jquery.js"></script>
+	<script src="jquery-ui-autocomplete.js"></script>
+	<script src="jquery.select-to-autocomplete.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 	  (function($){
 	    $(function(){
@@ -41,7 +46,9 @@
       color: #161A1C;
     }
 	</style>
-
+</head>
+<body>
+  <form>
     <select name="Country" id="country-selector" autofocus="autofocus" autocorrect="off" autocomplete="off">
       <option value="" selected="selected">Select Country</option>
       <option value="Afghanistan" data-alternative-spellings="AF افغانستان">Afghanistan</option>
@@ -295,23 +302,7 @@
       <option value="Zimbabwe" data-alternative-spellings="ZW">Zimbabwe</option>
     </select>
     
-<h2>Sign up</h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-<p><%= f.label :name %><br />
-<%= f.text_field :name %></p>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
