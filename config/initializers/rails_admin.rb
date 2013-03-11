@@ -146,26 +146,34 @@ RailsAdmin.config do |config|
   # end
 
 
-  ###  User  ###
 
   RailsAdmin.config do |config|
-  config.model 'User' do
-    list do
-      field :username
-      field :email
-      field :title
-      field :first_name
-      field :last_name
-      field :is_admin
+    config.model 'User' do
+      list do
+        field :username
+        field :email
+        field :title
+        field :first_name
+        field :last_name
+        field :is_admin
+      end
+    end
+    config.model 'Course' do
+      list do
+        field :name
+        field :description
+        field :start_date
+        field :end_date
+      end
+    end
+    config.model 'Category' do
+      list do
+        field :name
+        field :courses
+      end
     end
   end
-  config.model 'Course' do
-    list do
-      field :name
-      field :description
-      field :start_date
-      fiels :end_date
-  end
+
 
  #  config.model 'User' do
   #config.model 'User' do
