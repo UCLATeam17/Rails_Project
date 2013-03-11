@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
   # config.included_models = ['Category', 'Course', 'User']
 
   # Label methods for model instances:
-  # config.label_methods << :description # Default is [:name, :title]
+  # config.label_methods << :description # Default is [:name]
 
 
   ################  Model configuration  ################
@@ -148,17 +148,36 @@ RailsAdmin.config do |config|
 
   ###  User  ###
 
-  # config.model 'User' do
+  RailsAdmin.config do |config|
   config.model 'User' do
-    edit do
-      configure :password do
-        hide
-      end
-      configure :password_confirmation do
-        hide
-      end
+    list do
+      field :username
+      field :email
+      field :title
+      field :first_name
+      field :last_name
+      field :is_admin
     end
   end
+  config.model 'Course' do
+    list do
+      field :name
+      field :description
+      field :start_date
+      fiels :end_date
+  end
+
+ #  config.model 'User' do
+  #config.model 'User' do
+  #  edit do
+  #    configure :password do
+  #      hide
+  #    end
+  #    configure :password_confirmation do
+  #      hide
+  #    end
+  #  end
+  #end
   #   # You can copy this to a 'rails_admin do ... end' block inside your user.rb model definition
 
   #   # Found associations:

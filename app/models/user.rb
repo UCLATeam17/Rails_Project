@@ -15,7 +15,7 @@ class User
   field :username, :type => String
   index({ username: 1 }, {unique: true})
 
-  validates_presence_of :username, :password_confirmation, :password, :email, :title, :first_name, :last_name
+  validates_presence_of :username, :email, :title, :first_name, :last_name
   validates_uniqueness_of :username
   validates_presence_of :encrypted_password
   
@@ -48,7 +48,7 @@ class User
   # field :authentication_token, :type => String
   # run 'rake db:mongoid:create_indexes' to create indexes
   index({ email: 1 }, { unique: true, background: true })
-  
+
   field :title, :type => String
   field :first_name, :type => String
   field :last_name, :type => String

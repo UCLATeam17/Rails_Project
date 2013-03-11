@@ -44,19 +44,41 @@
 
 
 <div class="container">
-        <div class="row">
+        <div class="row-fluid">
           <div class="span9">
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
           <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
+            <div class="well sidebar-nav pull-right">
+              <ul class="nav nav-list ">
+                <% if user_signed_in? %>
+                  <li>
+                    <div><%= link_to 'Logout', destroy_user_session_path, :method=>'delete', :class => "btn btn-primary" %></div>
+                  </li>
+                <%else%>
+                  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+                  <div class="form-actions">
+                    <li>
+                      <%= f.label :login %>
+                      <%= f.text_field :login %>
+                    </li>
+                    <li>
+                      <%= f.label :password %>
+                      <%= f.password_field :password %>
+                    </li>
+                    <li>
+                      <div><%= f.submit "Sign in", :class => "btn btn-primary"%></div>
+                    </li>
+                    <li>
+                      -------------------
+                    </li>
+                    <li>
+                      <div><%= link_to 'Sign up', new_user_registration_path, :class => "btn btn-secondary" %></div>
+                    </li>
+                  </div>
+                  <%end%>
+                <%end%>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
