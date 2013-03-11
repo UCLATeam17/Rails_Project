@@ -1,0 +1,10 @@
+<h1>Listing courses</h1>
+
+<table>
+<% @courses.each do |course| %>
+  <tr>
+    <td><%= link_to course.name, course %></td>
+  </tr>
+<% end %>
+</table>
+

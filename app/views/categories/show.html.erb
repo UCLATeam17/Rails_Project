@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+<tr>
+  <th>
+    <%= @category.name %>
+  </th>
+</tr>
+<% @category.courses.each do |course| %>
+<tr>
+  <td>
+    <%= link_to course.name, course %>
+  </td>
+</tr>
+<% end %>
+</table>
+

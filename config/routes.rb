@@ -1,4 +1,11 @@
 Rails3MongoidDevise::Application.routes.draw do
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  resources :courses
+
+  resources :categories
+
   authenticated :user do
     root :to => 'home#index'
   end
