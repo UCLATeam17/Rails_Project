@@ -15,7 +15,7 @@ class User
   field :username, :type => String
   index({ username: 1 }, {unique: true})
 
-  validates_presence_of :username, :email, :title, :first_name, :last_name
+  validates_presence_of :username, :email, :title, :first_name, :last_name, :country
   validates_uniqueness_of :username
   validates_presence_of :encrypted_password
 
@@ -38,6 +38,7 @@ class User
   field :title, :type => String
   field :first_name, :type => String
   field :last_name, :type => String
+  field :country, :type => String
   
   field :is_admin, :type => Boolean, :default => false
 
@@ -56,7 +57,7 @@ class User
   field :last_sign_in_ip,    :type => String
 
   attr_accessor :login
-  attr_accessible :login, :title, :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :is_admin
+  attr_accessible :login, :title, :first_name, :last_name, :county, :username, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :is_admin
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
