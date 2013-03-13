@@ -7,7 +7,7 @@ RailsAdmin.config do |config|
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
-  config.main_app_name = ['Rails3 Mongoid Devise', 'Admin']
+  config.main_app_name = ['UCC Summer Courses', 'Admin']
   # or for a more dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
   # config.included_models = ['Category', 'Course', 'User']
 
   # Label methods for model instances:
-  # config.label_methods << :description # Default is [:name, :title]
+  # config.label_methods << :description # Default is [:name]
 
 
   ################  Model configuration  ################
@@ -146,10 +146,46 @@ RailsAdmin.config do |config|
   # end
 
 
-  ###  User  ###
 
-  # config.model 'User' do
+  RailsAdmin.config do |config|
+    config.model 'User' do
+      list do
+        field :username
+        field :email
+        field :title
+        field :first_name
+        field :last_name
+        field :is_admin
+      end
+    end
+    config.model 'Course' do
+      list do
+        field :name
+        field :description
+        field :start_date
+        field :end_date
+      end
+    end
+    config.model 'Category' do
+      list do
+        field :name
+        field :courses
+      end
+    end
+  end
 
+
+ #  config.model 'User' do
+  #config.model 'User' do
+  #  edit do
+  #    configure :password do
+  #      hide
+  #    end
+  #    configure :password_confirmation do
+  #      hide
+  #    end
+  #  end
+  #end
   #   # You can copy this to a 'rails_admin do ... end' block inside your user.rb model definition
 
   #   # Found associations:
