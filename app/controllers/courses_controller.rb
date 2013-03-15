@@ -27,6 +27,14 @@ class CoursesController < ApplicationController
     end
   end
 
+  def booking 
+    @course = Course.find(params[:id])
+    authorize! :booking, @course, :message => "Please login to book a place."
+    format.html # show.html.erb
+    format.json { render json: @course }
+    
+  end
+
   # GET /courses/new
   # GET /courses/new.json
   #def new

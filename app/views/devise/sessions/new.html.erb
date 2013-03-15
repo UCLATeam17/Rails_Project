@@ -9,6 +9,8 @@
 
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+  <% end %>
   <div><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
+  -------------------
+  <div><%= link_to 'Sign up', new_user_registration_path, :class => "btn btn-secondary" %></div>
 <% end %>
