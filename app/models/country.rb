@@ -1,6 +1,8 @@
 class Country
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
-  belongs_to :user
+  has_many :users
+
+  field :name, type: String
 
 end

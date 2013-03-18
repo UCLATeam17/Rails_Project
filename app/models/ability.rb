@@ -8,7 +8,7 @@ class Ability
         can :access, :rails_admin       # only allow admin users to access Rails Admin
         can :dashboard                  # allow access to dashboard
         can :manage, :all
-        cannot :update, User #employee can update own user details
+        cannot :update, User # can update own user details
       end
     end
   end

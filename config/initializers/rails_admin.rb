@@ -1,4 +1,4 @@
-# RailsAdmin config file. Generated on March 07, 2013 14:17
+# RailsAdmin config file. Generated on March 15, 2013 15:08
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
@@ -13,9 +13,10 @@ RailsAdmin.config do |config|
 
   # RailsAdmin may need a way to know who the current user is]
   config.current_user_method { current_user } # auto-generated
+ 
+  #Hide country model
+  #config.excluded_models << Country
 
-  config.excluded_models << Country
-  
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
 
@@ -29,13 +30,13 @@ RailsAdmin.config do |config|
   # config.default_items_per_page = 20
 
   # Exclude specific models (keep the others):
-  # config.excluded_models = ['Category', 'Course', 'User']
+  # config.excluded_models = ['Category', 'Country', 'Course', 'User']
 
   # Include specific models (exclude the others):
-  # config.included_models = ['Category', 'Course', 'User']
+  # config.included_models = ['Category', 'Country', 'Course', 'User']
 
   # Label methods for model instances:
-  # config.label_methods << :description # Default is [:name]
+  # config.label_methods << :description # Default is [:name, :title]
 
 
   ################  Model configuration  ################
@@ -56,10 +57,13 @@ RailsAdmin.config do |config|
 
   ###  Category  ###
 
-  # config.model 'Category' do
+ config.model 'Category' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your category.rb model definition
-
+   list do
+      field :name
+      field :courses
+    end
   #   # Found associations:
 
   #     configure :courses, :has_many_association 
@@ -92,19 +96,73 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
+
+
+  ###  Country  ###
+
+   config.model 'Country' do
+    list do
+      field :name
+      field :users
+    end
+  #   # You can copy this to a 'rails_admin do ... end' block inside your country.rb model definition
+
+  #   # Found associations:
+
+  #     configure :user, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :_id, :bson_object_id 
+  #     configure :user_id, :bson_object_id         # Hidden 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       filters [:name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  end
 
 
   ###  Course  ###
 
-  # config.model 'Course' do
+ config.model 'Course' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your course.rb model definition
 
   #   # Found associations:
 
   #     configure :category, :belongs_to_association 
-
+    list do
+      field :name
+      field :description
+      field :start_date
+      field :end_date
+      field :num_visits
+      field :num_places
+      field :num_places_booked
+      field :tags
+      field :category
+    end
   #   # Found columns:
 
   #     configure :_id, :bson_object_id 
@@ -145,57 +203,33 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+ end
 
 
-
-  RailsAdmin.config do |config|
-    config.model 'User' do
-      list do
-        field :username
-        field :email
-        field :title
-        field :first_name
-        field :last_name
-        field :is_admin
-      end
+  ###  User  ###
+  config.model 'User' do
+    list do
+      field :username
+      field :email
+      field :is_admin
+      field :first_name
+      field :last_name
+      field :country
+      field :title
+      field :first_name
+      field :last_name
+      field :last_sign_in_at
+      field :created_at
+      field :updated_at
     end
-    config.model 'Course' do
-      list do
-        field :name
-        field :description
-        field :start_date
-        field :end_date
-      end
-    end
-    config.model 'Category' do
-      list do
-        field :name
-        field :courses
-      end
-    end
-    
-  end
-
-
- #  config.model 'User' do
-  #config.model 'User' do
-  #  edit do
-  #    configure :password do
-  #      hide
-  #    end
-  #    configure :password_confirmation do
-  #      hide
-  #    end
-  #  end
-  #end
   #   # You can copy this to a 'rails_admin do ... end' block inside your user.rb model definition
 
   #   # Found associations:
 
-
+  #     configure :country, :has_one_association 
 
   #   # Found columns:
+
 
   #     configure :_id, :bson_object_id 
   #     configure :created_at, :datetime 
@@ -205,6 +239,10 @@ RailsAdmin.config do |config|
   #     configure :password_confirmation, :password         # Hidden 
   #     configure :reset_password_token, :text         # Hidden 
   #     configure :username, :text 
+  #     configure :title, :string 
+  #     configure :first_name, :text 
+  #     configure :last_name, :text 
+  #     configure :is_admin, :boolean 
   #     configure :reset_password_sent_at, :datetime 
   #     configure :remember_created_at, :datetime 
   #     configure :sign_in_count, :integer 
@@ -212,11 +250,6 @@ RailsAdmin.config do |config|
   #     configure :last_sign_in_at, :datetime 
   #     configure :current_sign_in_ip, :text 
   #     configure :last_sign_in_ip, :text 
-  #     configure :name, :serialized 
-  #     configure :title, :string 
-  #     configure :first_name, :text 
-  #     configure :last_name, :text 
-  #     configure :is_admin, :boolean 
 
   #   # Cross-section configuration:
 
@@ -230,7 +263,7 @@ RailsAdmin.config do |config|
   #   # Section specific configuration:
 
   #     list do
-  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       filters [:name]  # Array of field names which filters should be shown by default in the table header
   #       # items_per_page 100    # Override default_items_per_page
   #       # sort_by :id           # Sort column (default is primary key)
   #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
@@ -241,6 +274,14 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
+
+  config.model 'Instructor' do
+    list do
+      field :name
+      field :email
+      field :courses
+    end
+  end
 
 end

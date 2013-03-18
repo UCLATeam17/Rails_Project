@@ -30,9 +30,10 @@ class CoursesController < ApplicationController
   def booking 
     @course = Course.find(params[:id])
     authorize! :booking, @course, :message => "Please login to book a place."
-    format.html # show.html.erb
-    format.json { render json: @course }
-    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @course }
+    end
   end
 
   # GET /courses/new

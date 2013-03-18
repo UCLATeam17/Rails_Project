@@ -16,11 +16,11 @@
                 <%= link_to 'Categories', categories_path%>
               </li>
               <% if user_signed_in? %>
-              <li>
+              <li class="pull-right">
                 <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
               </li>
              <% else %>
-               <li>
+               <li class="pull-right">
                <%= link_to 'Login', new_user_session_path %>
                </li>
               <% end %>
@@ -29,7 +29,7 @@
                   <%= link_to 'Edit account', edit_user_registration_path %>
                 </li>
               <% else %>
-                <li>
+                <li class="pull-right">
                   <%= link_to 'Sign up', new_user_registration_path %>
                 </li>
               <% end %>
@@ -51,8 +51,15 @@
           </div>
           <div class="span3">
             <div class="well sidebar-nav pull-right">
-              <ul class="nav nav-list ">
+              <ul class="nav nav-pills nav-stacked">
+                <li ><%= link_to 'Categories', categories_path %>
+                </li>
                 <% if user_signed_in? %>
+                  <% if can? :access, :rails_admin %> 
+                    <li>
+                      <%= link_to 'Admin Dashboard', rails_admin_path %>
+                    </li>
+                  <%end%>
                   <li>
                     <div><%= link_to 'Logout', destroy_user_session_path, :method=>'delete', :class => "btn btn-primary" %></div>
                   </li>
@@ -70,9 +77,7 @@
                     <li>
                       <div><%= f.submit "Sign in", :class => "btn btn-primary"%></div>
                     </li>
-                    <li>
-                      -------------------
-                    </li>
+                     <li class="nav-header">Sign up</li>
                     <li>
                       <div><%= link_to 'Sign up', new_user_registration_path, :class => "btn btn-secondary" %></div>
                     </li>
