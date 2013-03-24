@@ -29,7 +29,7 @@
   <%= f.email_field :email, :autofocus => true, :class => "input-large" %></div>
 
   <div><%= f.label :country %>
-  <%= collection_select :country, :id, Country.all, :id, :name, :class => "input-large" %></div>
+  <%= f.collection_select :country, Country.all, :id, :name, :class => "input-large" %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

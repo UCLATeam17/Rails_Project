@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<table>
+<table class="span6">
 <tr>
-  <th>
+  <h2>
     <%= @course.name %>
-  </th>
+  </h2>
 </tr>
 <tr>
   <td>
@@ -14,8 +14,20 @@
     <%= @course.description %>
   </td>
 </tr>
+<tr>
+	<td>
+	<br />
+    <br />
+    <div><%= link_to "Book Now", booking_course_path, :class => "btn btn-primary"%></div></td>
+</tr>
 </table>
 
-<div><%= link_to "Book Now", booking_course_path, :class => "btn btn-primary"%></div>
+<% if @course.image %>
+  <table class="span6">
+	<tr ><td>
+      <img class="media-object" src="<%=@course.image%>"/>
+    </td></tr>
+  </div>
+<%end%>
 
-<%= link_to 'Back', courses_path %>
+

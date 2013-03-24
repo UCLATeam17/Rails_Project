@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if params[:search]
+      @courses = Course.find(:tags => "/params[:search]/")
     else
       @courses = Course.all
     end
@@ -19,7 +20,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @course.num_visits += 1
-    @course.save
+    @course.save || flash[:error] = "Not saved"
 
     respond_to do |format|
       format.html # show.html.erb

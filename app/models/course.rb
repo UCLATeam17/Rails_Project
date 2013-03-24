@@ -28,6 +28,10 @@ class Course
   validate :valid_date_range_required, :start_date_cannot_be_in_the_past
   tags = :tags
 
+  #carrierwave image upload
+  mount_uploader :image 
+  attr_accessible :image, :image_cache, :remove_image
+
 
   def valid_date_range_required
     if (start_date > end_date)

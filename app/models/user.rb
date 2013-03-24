@@ -16,7 +16,7 @@ class User
   field :username, :type => String
   index({ username: 1 }, {unique: true})
 
-  validates_presence_of :username, :email, :first_name, :last_name, :title, :password, :password_confirmation, :country_id
+  validates_presence_of :username, :email, :first_name, :last_name, :title, :password, :password_confirmation
   validates_uniqueness_of :username
   validates_presence_of :encrypted_password
 
@@ -57,7 +57,7 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
-
+  
   attr_accessor :login
   attr_accessible :login, :username, :first_name, :last_name, :title, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :is_admin
   attr_accessible :country_id

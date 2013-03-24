@@ -27,3 +27,5 @@ gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri
 gem 'rails_admin'
 gem 'mongoid_search'
 gem "cancan"
+
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
