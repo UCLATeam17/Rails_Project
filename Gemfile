@@ -29,3 +29,5 @@ gem 'mongoid_search'
 gem "cancan"
 
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
+gem 'active_attr'

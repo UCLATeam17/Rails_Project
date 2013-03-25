@@ -2,6 +2,10 @@ Rails3MongoidDevise::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  resources :messages
+
+  match '/faq' => "static#faq.html.erb"
+
   resources :courses do
     get :booking, :on => :member
   end 

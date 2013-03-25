@@ -78,5 +78,20 @@ module Rails3MongoidDevise
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => "example.com",
+      :user_name            => "uccteamproject17@gmail.com",
+      :password             => "moomoomoo",
+      :authentication       => :plain,
+      :enable_starttls_auto => true
+    }
+
+    config.action_mailer.default_url_options = {
+      :host => "gmail.com"
+    }
+    config.action_mailer.raise_delivery_errors = true
   end
 end
