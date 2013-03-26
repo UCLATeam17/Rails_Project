@@ -9,16 +9,23 @@
 <tr>
   <td>
   	Description:
-  </td>
-  <td>
     <%= @course.description %>
   </td>
 </tr>
 <tr>
 	<td>
-	<br />
-    <br />
-    <div><%= link_to "Book Now", booking_course_path, :class => "btn btn-primary"%></div></td>
+  <br />
+  <br />
+   <% if user_signed_in? %>
+     <script src="paypal-button.min.js?merchant=FFD74YX8JZ4ZW"
+     data-button="buynow"
+     data-name="My product"
+     data-amount="<%=@course.price%>"
+     ></script>
+   <%else%>
+     <p>Please log in to book a place</p>
+   <%end%>
+  </td>
 </tr>
 </table>
 

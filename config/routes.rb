@@ -6,9 +6,7 @@ Rails3MongoidDevise::Application.routes.draw do
 
   match '/faq' => "static#faq.html.erb"
 
-  resources :courses do
-    get :booking, :on => :member
-  end 
+  resources :courses  
 
   resources :categories
 
