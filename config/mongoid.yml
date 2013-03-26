@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        - mongodb://patrickcorrigan7@gmail.com:Sierra79!?@alex.mongohq.com:10009/app13992941
       options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
@@ -71,7 +71,7 @@ test:
     default:
       database: team-project
       hosts:
-        - localhost:27017
+        - mongodb://patrickcorrigan7@gmail.com:Sierra79!?@alex.mongohq.com:10009/app13992941
       options:
         consistency: :strong
         # In the test environment we lower the retries and retry interval to
