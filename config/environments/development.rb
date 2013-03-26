@@ -22,13 +22,14 @@ Rails3MongoidDevise::Application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "gmail.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["uccteamproject17@gmail.com"],
-    password: ENV["moomoomoo"]
+  :enable_starttls_auto => true,  
+  :address            => 'smtp.gmail.com',
+  :port               => 587,
+  :tls                  => true,
+  :domain             => 'gmail.com', #you can also use google.com
+  :authentication     => :plain,
+  :user_name          => 'uccteamproject17@gmail.com',
+  :password           => 'moomoomoo'
   }
 
 

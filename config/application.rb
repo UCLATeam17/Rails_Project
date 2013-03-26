@@ -15,9 +15,9 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Rails3MongoidDevise
+module Rails_Project
   class Application < Rails::Application
-
+    require 'tlsmail'  
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       
@@ -78,20 +78,25 @@ module Rails3MongoidDevise
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
-      :domain               => "example.com",
-      :user_name            => "uccteamproject17@gmail.com",
-      :password             => "moomoomoo",
-      :authentication       => :plain,
-      :enable_starttls_auto => true
+     
+    Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)   
+    ActionMailer::Base.delivery_method = :smtp   
+    ActionMailer::Base.perform_deliveries = true   
+    ActionMailer::Base.raise_delivery_errors = true   
+    ActionMailer::Base.smtp_settings = {   
+      :enable_starttls_auto => true,     
+      :address            => 'smtp.gmail.com',   
+      :port               => 587,   
+      :tls                  => true,   
+      :domain             => 'gmail.com',    
+      :authentication     => :plain,   
+      :user_name          => 'uccteamproject17@gmail.com',   
+      :password           => 'moomoomoo' # for security reasons you can use a environment variable too. (ENV['INFO_MAIL_PASS'])   
     }
 
     config.action_mailer.default_url_options = {
       :host => "gmail.com"
     }
-    config.action_mailer.raise_delivery_errors = true
+    
   end
 end
