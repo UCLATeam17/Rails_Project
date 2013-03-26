@@ -6,7 +6,8 @@ class Test < Test::Unit::TestCase
   def test_case_name
     
   end
-endRails3MongoidDevise::Application.configure do
+end
+Rails_Project::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's

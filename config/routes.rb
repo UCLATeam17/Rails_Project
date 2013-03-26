@@ -1,4 +1,4 @@
-Rails3MongoidDevise::Application.routes.draw do
+Rails_Project::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
