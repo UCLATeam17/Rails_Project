@@ -15,15 +15,12 @@
               <li>
                 <%= link_to 'Categories', categories_path%>
               </li>
-<<<<<<< HEAD
               <li>
                 <%= link_to 'Contact Us', new_message_path %>
               </li>
               <li>
                 <%= link_to 'FAQ', '/faq' %>
               </li>
-=======
->>>>>>> d46909a2b1a8f76277a616aa2db1d77658d737b0
               <% if user_signed_in? %>
               <li class="pull-right">
                 <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>

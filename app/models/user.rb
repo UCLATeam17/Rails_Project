@@ -20,11 +20,7 @@ class User
   validates_uniqueness_of :username
   validates_presence_of :encrypted_password
 
-<<<<<<< HEAD
   validates_presence_of :country_id, :message => "must be selected"
-=======
-#  validates_presence_of :country_id, :message => "must be selected"
->>>>>>> d46909a2b1a8f76277a616aa2db1d77658d737b0
 
   ## Confirmable
   # field :confirmation_token,   :type => String
