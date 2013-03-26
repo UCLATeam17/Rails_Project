@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<table class="span5">
+<tr>
+  <h2>
+    <%= @course.name %>
+  </h2>
+</tr>
+<tr>
+  <td>
+  	Description:
+  </td>
+  <td>
+    <%= @course.description %>
+  </td>
+</tr>
+<tr>
+	<td>
+	<br />
+    <br />
+    <div><%= link_to "Book Now", booking_course_path, :class => "btn btn-primary"%></div></td>
+</tr>
+</table>
+
+<% if @course.image %>
+  <div class="span4">
+	<p>
+      <img class="media-object" src="<%=@course.image%>" width="300", height="200"/>
+    </p>
+  </div>
+<%end%>
+
+
